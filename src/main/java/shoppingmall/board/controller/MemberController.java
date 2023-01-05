@@ -9,7 +9,6 @@ public class MemberController {
 
     @GetMapping("/join")
     public String joinMemberForm() {
-
         return "";
     }
 
