@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class MemberDao implements JdbcDao {
+public class MemberDao {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -20,8 +20,7 @@ public class MemberDao implements JdbcDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @Override
-    public MemberDto save(MemberDto memberDto) {
+    public MemberDto insertMember(MemberDto memberDto) {
         jdbcTemplate.update("INSERT INTO member VALUES(?, ?, ?, ?, ?, ?)",
                 memberDto.getId(),
                 memberDto.getPassword(),
@@ -33,33 +32,30 @@ public class MemberDao implements JdbcDao {
         return memberDto;
     }
 
-    @Override
-    public Optional<MemberDto> findById(String id) {
+    public Optional<MemberDto> findMemberById(String id) {
         List<MemberDto> result = jdbcTemplate.query(
                 "SELECT " +
-                        "id, nickname, password, email, join_date, last_login, status " +
+                        "id, nickname, password, email, profile_img, join_date, last_login, status " +
                         "FROM member" +
                         "JOIN nick ON member.id = nick.nick_id" +
                         "WHERE id=?", memberRowMapper(), id);
         return result.stream().findAny();
     }
 
-    @Override
-    public Optional<MemberDto> findByName(String nickname) {
+    public Optional<MemberDto> findMemberByName(String nickname) {
         List<MemberDto> result = jdbcTemplate.query(
                 "SELECT " +
-                        "id, nickname, password, email, join_date, last_login, status " +
+                        "id, nickname, password, email, profile_img, join_date, last_login, status " +
                         "FROM member" +
                         "JOIN nick ON member.id = nick.nick_id" +
                         "WHERE nickname=?", memberRowMapper(), nickname);
         return result.stream().findAny();
     }
 
-    @Override
-    public List<MemberDto> findAll() {
+    public List<MemberDto> findAllMember() {
         List<MemberDto> memberList = jdbcTemplate.query(
                 "SELECT " +
-                        "id, nickname, password, email, join_date, last_login, status " +
+                        "id, nickname, password, email, profile_img, join_date, last_login, status " +
                         "FROM member" +
                         "JOIN nick ON member.id = nick.nick_id", memberRowMapper());
 
@@ -73,6 +69,7 @@ public class MemberDao implements JdbcDao {
             member.setNickname(rs.getString("nickname"));
             member.setPassword(rs.getString("password"));
             member.setEmail(rs.getString("email"));
+            member.setProfileImg(rs.getString("profile_img"));
             member.setJoinDate(rs.getString("join_date"));
             member.setLastLogin(rs.getString("last_login"));
             member.setStatus(rs.getInt("status"));
