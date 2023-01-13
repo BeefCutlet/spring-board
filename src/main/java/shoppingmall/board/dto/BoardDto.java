@@ -12,10 +12,10 @@ public class BoardDto {
     private String boardContent;
     private String boardCategory;
     private String boardPostDate;
-    private String boardViewCount;
-    private String boardStatus;
-    private String boardReGroup;
-    private String boardReStep;
-    private String boardReLevel;
+    private int boardViewCount;
+    private int boardStatus;
+    private int boardReGroup;
+    private int boardReStep;
+    private int boardReLevel;
     private String boardIpAddress;
 }

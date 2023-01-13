@@ -20,8 +20,8 @@ public class MemberDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public MemberDto insertMember(MemberDto memberDto) {
-        jdbcTemplate.update("INSERT INTO member VALUES(?, ?, ?, ?, ?, ?)",
+    public int save(MemberDto memberDto) {
+        int rows = jdbcTemplate.update("INSERT INTO member VALUES(?, ?, ?, ?, ?, ?)",
                 memberDto.getId(),
                 memberDto.getPassword(),
                 memberDto.getEmail(),
@@ -29,10 +29,17 @@ public class MemberDao {
                 memberDto.getLastLogin(),
                 memberDto.getStatus());
 
-        return memberDto;
+        return rows;
     }
 
-    public Optional<MemberDto> findMemberById(String id) {
+    public int update(MemberDto memberDto) {
+        int rows = jdbcTemplate.update("UPDATE member SET " +
+                " nickname=?, password=?, email=?, profile_img=?");
+
+        return rows;
+    }
+
+    public Optional<MemberDto> findById(String id) {
         List<MemberDto> result = jdbcTemplate.query(
                 "SELECT " +
                         "id, nickname, password, email, profile_img, join_date, last_login, status " +
@@ -42,7 +49,7 @@ public class MemberDao {
         return result.stream().findAny();
     }
 
-    public Optional<MemberDto> findMemberByName(String nickname) {
+    public Optional<MemberDto> findByName(String nickname) {
         List<MemberDto> result = jdbcTemplate.query(
                 "SELECT " +
                         "id, nickname, password, email, profile_img, join_date, last_login, status " +
@@ -52,7 +59,7 @@ public class MemberDao {
         return result.stream().findAny();
     }
 
-    public List<MemberDto> findAllMember() {
+    public List<MemberDto> findAll() {
         List<MemberDto> memberList = jdbcTemplate.query(
                 "SELECT " +
                         "id, nickname, password, email, profile_img, join_date, last_login, status " +
