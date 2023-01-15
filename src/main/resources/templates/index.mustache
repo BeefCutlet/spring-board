@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{{>layout/header}}
+<div class="container-md">
+    <div id="header" align="right">
+        <div id="profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+        </div>
+    </div>
+    <div id="content">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>글번호</th>
+                <th>작성자</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+            {{#boardList}}
+            <tr>
+                <td>{{boardNo}}</td>
+                <td>{{boardWriter}}</td>
+                <td>{{boardTitle}}</td>
+                <td>{{boardPostDate}}</td>
+                <td>{{boardViewCount}}</td>
+            </tr>
+            {{/boardList}}
+        </table>
+        <div>
+            <div id="searchForm" class="input-group mb-3">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1">검색</button>
+                <input type="text" class="form-control" placeholder=""
+                       aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+            <button type="button" class="btn btn_secondary">글쓰기</button>
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

@@ -3,12 +3,13 @@ package shoppingmall.board.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import shoppingmall.board.dto.BoardDto;
-import shoppingmall.board.dto.MemberDto;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class BoardDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -20,25 +21,21 @@ public class BoardDao {
 
     public int save(BoardDto board) {
         int save = jdbcTemplate.update("INSERT INTO board VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
         return save;
     }
 
     public int update(BoardDto board) {
         int update = jdbcTemplate.update("UPDATE board SET ");
-
         return update;
     }
 
     public List<BoardDto> findAll() {
-        List<BoardDto> boardList = jdbcTemplate.query("SELECT * FROM board", memberRowMapper());
-
+        List<BoardDto> boardList = jdbcTemplate.query("SELECT * FROM board ORDER BY board_no DESC", memberRowMapper());
         return boardList;
     }
 
     public Optional<BoardDto> findByNo(int boardNo) {
         List<BoardDto> board = jdbcTemplate.query("SELECT * FROM board WHERE board_no=?", memberRowMapper(), boardNo);
-
         return board.stream().findAny();
     }
 

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommentBto {
+public class CommentDto {
     private int commentNo;
     private String commentContent;
     private String commentNickname;
