@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import shoppingmall.board.dto.BoardDto;
 import shoppingmall.board.service.BoardService;
 
 import java.util.List;
 
-@Controller("/board")
+@Controller
+@RequestMapping("/board")
 public class BoardController {
 
     private final BoardService boardService;
@@ -23,5 +25,10 @@ public class BoardController {
     public String boardDetail(@PathVariable int no) {
 
         return "";
+    }
+
+    @GetMapping("/write")
+    public String writeBoard() {
+        return "board/write";
     }
 }
