@@ -25,8 +25,23 @@ public class BoardDao {
     }
 
     public int update(BoardDto board) {
-        int update = jdbcTemplate.update("UPDATE board SET ");
+        int update = jdbcTemplate.update(
+                "UPDATE board " +
+                        "SET " +
+                        "board_title=?, " +
+                        "board_content=?, " +
+                        "board_category=? " +
+                        "WHERE board_no=?",
+                board.getBoardTitle(),
+                board.getBoardContent(),
+                board.getBoardCategory(),
+                board.getBoardNo());
         return update;
+    }
+
+    public int updateStatus(int boardNo) {
+        int result = jdbcTemplate.update("UPDATE board SET board_status=0 WHERE board_no=?", boardNo);
+        return result;
     }
 
     public List<BoardDto> findAll() {

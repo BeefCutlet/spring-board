@@ -8,21 +8,23 @@
             </svg>
         </div>
     </div>
-    <div id="content">
-        <table>
-            <tr>
-                <td>제목</td>
-                <td><input type="text" id="title"></td>
-            </tr>
-            <tr>
-                <td>내용</td>
-                <td>
-                    <div class="mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
-                    </div>
-                </td>
-            </tr>
-        </table>
+    <div id="content" align="center">
+        <form method="post" action="/board/write">
+            <table id="boardWriteTable">
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" id="boardTitle" name="title"></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td>
+                        <div class="mb-3">
+                            <textarea id="boardTextArea" class="form-control" name="content" rows="7"></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>
 {{>layout/footer}}

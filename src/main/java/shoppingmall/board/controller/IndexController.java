@@ -21,7 +21,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String indexMapping(Model model) {
-        List<BoardDto> boardList = boardService.selectBoardList();
+        List<BoardDto> boardList = boardService.getBoardList();
         model.addAttribute("boardList", boardList);
         return "index";
     }

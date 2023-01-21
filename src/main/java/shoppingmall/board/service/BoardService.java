@@ -17,7 +17,22 @@ public class BoardService {
         this.boardDao = boardDao;
     }
 
-    public List<BoardDto> selectBoardList() {
+    public int addBoard(BoardDto board) {
+        int result = boardDao.save(board);
+        return result;
+    }
+
+    public int changeBoard(BoardDto board) {
+        int result = boardDao.update(board);
+        return result;
+    }
+
+    public int removeBoard(BoardDto board) {
+        int result = boardDao.update(board);
+        return result;
+    }
+
+    public List<BoardDto> getBoardList() {
         List<BoardDto> boardList = boardDao.findAll();
         return boardList;
     }

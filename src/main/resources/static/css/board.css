@@ -6,3 +6,11 @@
 #searchForm {
     width: 200px;
 }
+
+#boardWriteTable {
+    width: 1200px;
+}
+
+#boardTitle, #boardContent {
+    width: 1200px;
+}
