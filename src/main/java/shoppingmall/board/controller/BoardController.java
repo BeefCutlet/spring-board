@@ -32,7 +32,7 @@ public class BoardController {
 
     @PostMapping("/write")
     public String writeBoard(@ModelAttribute BoardDto boardDto) {
-
-        return "";
+        boardService.addBoard(boardDto);
+        return "index";
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class BoardService {
 
-    private final BoardDao boardDao;
+    private BoardDao boardDao;
 
     @Autowired
     public BoardService(BoardDao boardDao) {
@@ -18,6 +18,7 @@ public class BoardService {
     }
 
     public int addBoard(BoardDto board) {
+        int boardNo = boardDao.findBoardSeq();
         int result = boardDao.save(board);
         return result;
     }

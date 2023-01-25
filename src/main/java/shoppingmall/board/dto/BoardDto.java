@@ -17,5 +17,4 @@ public class BoardDto {
     private int boardReGroup;
     private int boardReStep;
     private int boardReLevel;
-    private String boardIpAddress;
 }
