@@ -1,0 +1,30 @@
+{{>layout/header}}
+<div class="container">
+    <div id="content">
+        <div id="boardViewBox">
+            {{#board}}
+            <h3>{{boardTitle}}</h3>
+            <div class="board-title-box">
+                <div class="board-post-info">
+                    <span>{{boardWriter}}</span> |
+                    <span>{{boardPostDate}}</span>
+                </div>
+                <div class="board-view-count">
+                    <span>조회수 {{boardViewCount}}회</span>
+                </div>
+            </div>
+            <hr>
+            <div class="board-content-box">
+                <div class="board-content">
+                    {{boardContent}}
+                </div>
+                <div class="board-btn">
+                    <button type="button" onclick="location.href='/board/edit';">글수정</button>
+                    <button type="button" onclick="location.href='/board/delete';">삭제</button>
+                </div>
+            </div>
+            {{/board}}
+        </div>
+    </div>
+</div>
+{{>layout/footer}}

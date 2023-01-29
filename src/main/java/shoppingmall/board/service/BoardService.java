@@ -6,6 +6,7 @@ import shoppingmall.board.dao.BoardDao;
 import shoppingmall.board.dto.BoardDto;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardService {
@@ -36,5 +37,10 @@ public class BoardService {
     public List<BoardDto> getBoardList() {
         List<BoardDto> boardList = boardDao.findAll();
         return boardList;
+    }
+
+    public BoardDto getBoard(int boardNo) {
+        BoardDto board = boardDao.findByNo(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
+        return board;
     }
 }

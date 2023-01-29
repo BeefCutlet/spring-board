@@ -2,6 +2,7 @@ package shoppingmall.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import shoppingmall.board.dto.BoardDto;
 import shoppingmall.board.service.BoardService;
@@ -20,9 +21,9 @@ public class BoardController {
     }
 
     @GetMapping("/detail/{no}")
-    public String boardDetail(@PathVariable int no) {
-
-        return "";
+    public String boardDetail(@PathVariable("no") int no, Model model) {
+        model.addAttribute("board", boardService.getBoard(no));
+        return "board/view";
     }
 
     @GetMapping("/write")

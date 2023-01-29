@@ -14,3 +14,28 @@
 #boardTitle, #boardContent {
     width: 1200px;
 }
+
+a {
+    text-decoration: none;
+}
+
+.board-title-box {
+    display: flex;
+    justify-content: start;
+}
+
+.board-post-info {
+
+}
+
+.board-view-count {
+    margin-left: auto;
+}
+
+.board-content {
+    height: 500px;
+}
+
+.board-btn {
+
+}
